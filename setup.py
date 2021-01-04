@@ -9,6 +9,6 @@ setup(name='SVGsimplify',
       license='MIT',
       author='Piet Brömmel',
       author_email='piet.broemmel@gmail.com',
-      setup_requires=['wheel']
+      setup_requires=['wheel'],
       install_requires=['vpype', 'numpy', 'svgpathtools'],
      )
