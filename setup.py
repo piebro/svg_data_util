@@ -9,5 +9,5 @@ setup(name='SVGsimplify',
       license='MIT',
       author='Piet Brömmel',
       author_email='piet.broemmel@gmail.com',
-      install_requires=['vpype', 'numpy', 'pickle', 'svgpathtools'],
+      install_requires=['vpype', 'numpy', 'svgpathtools'],
      )
