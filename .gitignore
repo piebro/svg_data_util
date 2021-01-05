@@ -1,3 +1,4 @@
 .ipynb_checkpoints
-*.svg
 *.pkl
+.vscode
+__pycache__

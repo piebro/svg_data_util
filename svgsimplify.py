@@ -14,7 +14,6 @@ def print_progress(text, i, max_i):
         print('')
 
 # Raw svg data need to have viewbox=0 0 1000 1000 and width=height=26.45834 then use:
-# (-t can specify the linesimplification, heigher means more simplification)
 def simplify(load_svg_path, save_svg_path, linesimplify=0.1, round_decimals=1):
     subprocess.run(f'vpype read {load_svg_path} linemerge linesimplify -t {linesimplify} write temp.svg', shell=True)
     if not os.path.isfile("temp.svg"):
