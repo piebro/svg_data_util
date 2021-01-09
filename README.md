@@ -1,47 +1,53 @@
-# Simplify SVG for usesage in machine learning
+# Library for usage of SVGs in machine learning
 
-Simple library to simplify SVGs for machine learning. The simpler SVGs are constist of polylines with discrete points.
+Library to simplify SVGs for machine learning. The simpler SVGs are constist of polylines with discrete points.
 
 ## Installation
 
 ```bash
-pip install -q git+https://github.com/piebro/svgsimplify
+pip install -q git+https://github.com/piebro/svg_data_util
 ```
 
 ## Usage
 
-Save all SVGs you want do simplify in a directory. The SVGs need to have `viewBox="0 0 1000 1000"`, `width="26.45834cm"` and `height="26.45834cm"`. `linesimplify` sets how much the lines are simplified to polylines with less lines and `round_decimals` sets how much each point is rounded.
+
+### Simpify SVG
 
 ```python
-import svgsimplify
-# simplify SVG
-svgsimplify.simplify(load_svg_path, save_svg_path, linesimplify=0.1, round_decimals=1)
-# simplify dir with SVGs
-svgsimplify.simplify_dir(load_dir, save_dir, linesimplify=0.1, round_decimals=1)
+from svg_data_util import svg_to_lines, simplify_lines, save_svg, get_svg_from_lines
+
+# the points of the lines should be in [0 0 1000 1000]
+lines = svg_to_lines("examples/1BKZ.svg")
+sim_lines = simplify_lines(lines, max_xy=1000, rdp_epsilon=1) # rdp_epsilon describes how much the lines are simplified
+save_svg("examples/1BKZ_1000_1.svg", get_svg_from_lines(sim_lines, background=None))
 ```
 
-Save a pickeled Python list of polylines of all SVGs in the taget dir.
+### Create simplified SVG dataset
 
 ```python
-svgsimplify.save_simplified_svg_dir_with_pickle(save_dir, "dataset.pkl")
+from svg_data_util import svg_dir_to_dataset_pkl, save_simplified_dataset_pkl, dataset_pkl_to_lines
+
+svg_dir_to_dataset_pkl("examples", "examples.pkl")
+save_simplified_dataset_pkl("examples.pkl", "examples.pkl_2_500_1.pkl", svg_count_in_new_dataset=2, max_xy=500, rdp_epsilon=1)
+svg_lines = dataset_pkl_to_lines("examples.pkl_2_500_1.pkl")
 ```
 
 ## Example
 
-Original SVG with 304KB:
+Original SVG with 224K:
 
 <img src="examples/1BKZ.svg" width="800">
 
-`linesimplify=0.1` and `round_decimals=1` with 84KB:
+`max_xy=10000` and `rdp_epsilon=0.5` with 40KB:
 
-<img src="examples/1BKZ_linesimplify_01_round_decimals_1.svg" width="800">
+<img src="examples/1BKZ_10000_05.svg" width="800">
 
-`linesimplify=1` and `round_decimals=0` with 28KB:
+`max_xy=1000` and `rdp_epsilon=1` with 28KB:
 
-<img src="examples/1BKZ_linesimplify_1_round_decimals_0.svg" width="800">
+<img src="examples/1BKZ_1000_1.svg" width="800">
 
-`linesimplify=10` and `round_decimals=-1` with 8KB:
+`max_xy=250` and `rdp_epsilon=2` with 20KB:
 
-<img src="examples/1BKZ_linesimplify_10_round_decimals_-1.svg" width="800">
+<img src="examples/1BKZ_250_2.svg" width="800">
 
 

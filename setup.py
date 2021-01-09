@@ -2,13 +2,13 @@
 
 from distutils.core import setup
 
-setup(name='SVGsimplify',
+setup(name='svg_data_util',
       version='0.0.1',
-      description='Tool to simplify svgs',
-      url='https://github.com/piebro/svgsimplify',
+      description='Tool to simplify svgs for machine learning',
+      url='https://github.com/piebro/svg_data_util',
       license='MIT',
       author='Piet Brömmel',
       author_email='piet.broemmel@gmail.com',
       setup_requires=['wheel'],
-      install_requires=['vpype', 'numpy', 'svgpathtools'],
+      install_requires=['numpy', 'svgpathtools', 'rdp'],
      )
