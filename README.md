@@ -5,7 +5,7 @@ Library to simplify SVGs for machine learning. The simpler SVGs are constist of 
 ## Installation
 
 ```bash
-pip install -q git+https://github.com/piebro/svg_data_util
+pip install -q git+https://github.com/piebro/svgdatautil
 ```
 
 ## Usage
@@ -14,7 +14,7 @@ pip install -q git+https://github.com/piebro/svg_data_util
 ### Simpify SVG
 
 ```python
-from svg_data_util import svg_to_lines, simplify_lines, save_svg, get_svg_from_lines
+from svgdatautil import svg_to_lines, simplify_lines, save_svg, get_svg_from_lines
 
 # the points of the lines should be in [0 0 1000 1000]
 lines = svg_to_lines("examples/1BKZ.svg")
@@ -25,7 +25,7 @@ save_svg("examples/1BKZ_1000_1.svg", get_svg_from_lines(sim_lines, background=No
 ### Create simplified SVG dataset
 
 ```python
-from svg_data_util import svg_dir_to_dataset_pkl, save_simplified_dataset_pkl, dataset_pkl_to_lines
+from svgdatautil import svg_dir_to_dataset_pkl, save_simplified_dataset_pkl, dataset_pkl_to_lines
 
 svg_dir_to_dataset_pkl("examples", "examples.pkl")
 save_simplified_dataset_pkl("examples.pkl", "examples.pkl_2_500_1.pkl", svg_count_in_new_dataset=2, max_xy=500, rdp_epsilon=1)
