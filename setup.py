@@ -9,6 +9,7 @@ setup(name='svgdatautil',
       license='MIT',
       author='Piet Brömmel',
       author_email='piet.broemmel@gmail.com',
+      py_modules=["svgdatautil"],
       setup_requires=['wheel'],
       install_requires=['numpy', 'svgpathtools', 'rdp'],
      )
